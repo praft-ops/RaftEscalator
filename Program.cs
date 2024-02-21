@@ -1,7 +1,7 @@
-using AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore;
 using RaftEscalator.Data;
+
 // Create the bulder using .CreateBuilder
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +33,12 @@ if (!app.Environment.IsDevelopment())
 //Use Authentication
 app.UseAuthentication();
 
+//Use HttpsRedirection();
+app.UseHttpsRedirection();
+
+//Use Routing
+app.UseRouting();
+
 //Use Authorization
 app.UseAuthorization();
 
@@ -41,6 +47,10 @@ app.MapRazorPages();
 
 //Add Map Controllers for Attribute Routing
 app.MapControllers();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 //Run the App
 app.Run();
