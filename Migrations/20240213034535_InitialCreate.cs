@@ -32,7 +32,7 @@ namespace RaftEscalator.Migrations
                 name: "UserModel",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserFirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserLastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -44,7 +44,7 @@ namespace RaftEscalator.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserModel", x => x.Id);
+                    table.PrimaryKey("PK_UserModel", x => x.UserId);
                 });
         }
 

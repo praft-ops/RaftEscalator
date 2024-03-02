@@ -1,5 +1,4 @@
-﻿
-//    <Raft Escalator: A program for escalating issues.>
+﻿//    <Raft Escalator: A program for escalating issues.>
 //    Copyright (C) <2024>  <Patrick Sullivan Raftery>
 
 //    This program is free software: you can redistribute it and/or modify
@@ -17,18 +16,20 @@
 
 using System.ComponentModel.DataAnnotations;
 
+
 namespace RaftEscalator.Models
 {
-    public class UserModel
+    public class GroupModel
     {
-        public int UserId { get; set; }
-        public string? UserFirstName { get; set; }
-        public string? UserLastName { get; set; }
-        public string? UserEmail { get; set; }
-        public string? UserPhone { get; set; }
-        public string? UserPassword { get; set;}
+        public int GroupId { get; set; }
+        public string groupName { get; set; }
+        public bool isStageOne { get; set; }
+        public bool isStageTwo { get; set;}
+        public bool isStageThree { get; set;}
+        public bool isStageFour { get; set;}
+        public bool isStageFive { get; set;}
         public DateTime CreatedDate { get; set; }
-        public DateTime LastModifiedDate { get; set; } = DateTime.MinValue;
+        public DateTime LastUpdatedDate { get; set;}
 
     }
 }
