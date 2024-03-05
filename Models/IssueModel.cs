@@ -39,7 +39,7 @@ namespace RaftEscalator.Models
 
         // Foregin Keys
 
-        //Define one-to-many relationship to users
-        public ICollection<UserModel>? Users { get; set; }
+        //Define one-to-one relationship to users
+        public UserModel? Users { get; set; }
     }
 }
