@@ -33,47 +33,41 @@ namespace RaftEscalator.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
 
-            //Create the User Table
+            // Create the Organization Table
 
             migrationBuilder.CreateTable(
                 // Table Name
-                name: "UserModel",
+                name: "OrganizationModel",
 
-                // Create new table with columns UserID, UserFirstName, UserLastName, UserEmail, UserPhone, UserPassword
-                // ...CreatedDate, Last ModifiedDate, and GroupID
-
+                // Create a new table with the columns, OrgId, OrgName, OrganizationPhone, OrganizationEmail, CreatedDate, LastModified Date. 
                 columns: table => new
+
                 {
                     // Primary Key
 
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrgId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer.Identify", "1, 1"),
 
                     // Attributes
 
-                    UserFirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserLastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrgName = table.Column<string>(type: "string", nullable: false),
+                    OrganizationPhone = table.Column<string>(type: "string", nullable: true),
+                    OrganizationEmail = table.Column<string>(type: "string", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    
-                    //Foregin Key
-
-                    GroupId = table.Column<int>(type: "int", nullable: false)
-
                 },
 
-                // Create a constraint on the table on the user.ID collumn. Name the constraint PK_UserMode fir the primary key
+                // Define a constraint named OrganizationModel where the primary key is identified as OrgId
                 constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserModel", x => x.UserId); // Primary Key
 
+                {
+                    table.PrimaryKey("OrganizationModel", x => x.OrgId); //Primary Key
+                    // No Foregin Key. Top level data
                 }
 
                 );
-            // End Creatung User Table
+
+            // End Creating Organization table
 
             // Create the Group Table
 
@@ -114,7 +108,9 @@ namespace RaftEscalator.Migrations
                 constraints: table =>
 
                 {
-                    table.PrimaryKey("GroupModel", x =>x.GroupId); //PrimaryKey
+                    table.PrimaryKey("PK_GroupModel", x => x.GroupId); //PrimaryKey
+                    table.ForeignKey("FK_GroupModel_OrganizationModel_OrgId", x => x.OrgId, "OrganizationModel", "OrgId"); //Foreign key
+
 
                 }
 
@@ -122,40 +118,48 @@ namespace RaftEscalator.Migrations
 
             // End Creating group Table
 
-            // Create the Organization Table
+            //Create the User Table
 
             migrationBuilder.CreateTable(
                 // Table Name
-                name: "OrganizationModel",
+                name: "UserModel",
 
-                // Create a new table with the columns, OrgId, OrgName, OrganizationPhone, OrganizationEmail, CreatedDate, LastModified Date. 
+                // Create new table with columns UserID, UserFirstName, UserLastName, UserEmail, UserPhone, UserPassword
+                // ...CreatedDate, Last ModifiedDate, and GroupID
+
                 columns: table => new
-
                 {
                     // Primary Key
 
-                    OrgId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer.Identify", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
 
                     // Attributes
 
-                    OrgName = table.Column<string>(type: "string", nullable: false),
-                    OrganizationPhone = table.Column<string>(type: "string", nullable: true),
-                    OrganizationEmail = table.Column<string>(type: "string", nullable: true),
+                    UserFirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserLastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    
+                    //Foregin Key
+
+                    GroupId = table.Column<int>(type: "int", nullable: false)
+
                 },
 
-                // Define a constraint named OrganizationModel where the primary key is identified as OrgId
+                // Create a constraint on the table on the user.ID column. Name the constraint PK_UserMode for the primary key
                 constraints: table =>
 
                 {
-                    table.PrimaryKey("OrganizationModel", x => x.OrgId); //Primary Key
+                    table.PrimaryKey("PK_UserModel", x => x.UserId); // Primary Key
+                    table.ForeignKey("FK_UserModel_GroupModel_GroupId", x => x.GroupId, "GroupModel", "GroupId"); // ForeignKey
                 }
 
                 );
-
-            // End Creating Organization table
+            // End Creatung User Table
 
             // Create the Issues table
 
@@ -186,16 +190,21 @@ namespace RaftEscalator.Migrations
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
 
+                    // Foregin Key
+
+                    UserId = table.Column<int>(type: "int", nullable: false) //UserModel ForeginKey
+
                 },
 
                 // Define a constraint named IssueModel where the primary key is identified as IssueId
                 constraints: table =>
 
                 {
-                    table.PrimaryKey("IssueModel", x => x.IssueId); // Primary Key
+                    table.PrimaryKey("PK_IssueModel", x => x.IssueId); // Primary Key
+                    table.ForeignKey("FK_IssueModel_UserModel)UserId", x => x.UserId, "UserModel", "UserId"); // Foreign Key
                 }
 
-                );
+                ); ;
 
             // End Creating Issue Table
 

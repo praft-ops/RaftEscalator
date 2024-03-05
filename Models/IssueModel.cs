@@ -40,6 +40,6 @@ namespace RaftEscalator.Models
         // Foregin Keys
 
         //Define one-to-one relationship to users
-        public UserModel? Users { get; set; }
+        public UserModel? User { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace RaftEscalator.Models
 
         // Define a one to one relationship to groups
 
-        public GroupModel? Groups { get; set; }
+        public GroupModel? Group { get; set; }
 
     }
 }
