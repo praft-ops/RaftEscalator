@@ -22,14 +22,20 @@ namespace RaftEscalator.Models
     public class GroupModel
     {
         public int GroupId { get; set; }
-        public string groupName { get; set; }
-        public bool isStageOne { get; set; }
-        public bool isStageTwo { get; set;}
-        public bool isStageThree { get; set;}
-        public bool isStageFour { get; set;}
-        public bool isStageFive { get; set;}
+        public string? GroupName { get; set; }
+        public bool IsStageOne { get; set; }
+        public bool IsStageTwo { get; set;}
+        public bool IsStageThree { get; set;}
+        public bool IsStageFour { get; set;}
+        public bool IsStageFive { get; set;}
         public DateTime CreatedDate { get; set; }
         public DateTime LastUpdatedDate { get; set;}
 
+        //Define a one-to-many relationship with Users
+        public ICollection<UserModel>? Users { get; set; } //Navigation Property
+
+        // Define a one-to-one relationship with organizations
+
+        public OrganizationModel? Organizations { get; set; } //Navigation Property
     }
 }
