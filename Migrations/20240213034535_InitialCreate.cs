@@ -204,7 +204,7 @@ namespace RaftEscalator.Migrations
                     table.ForeignKey("FK_IssueModel_UserModel)UserId", x => x.UserId, "UserModel", "UserId"); // Foreign Key
                 }
 
-                ); ;
+                ); 
 
             // End Creating Issue Table
 
@@ -213,8 +213,22 @@ namespace RaftEscalator.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            //Drop the Organization Table
+
+            migrationBuilder.DropTable(
+                name: "OrganizationModel");
+
+            //Drop the Group Table
+            migrationBuilder.DropTable(
+                name: "GroupModel");
+
+            //Drop the User Table
             migrationBuilder.DropTable(
                 name: "UserModel");
+
+            //Drop the Issue table.
+            migrationBuilder.DropTable(
+                name: "IssueModel");
         }
     }
 }

@@ -31,5 +31,8 @@ namespace RaftEscalator.Data
         }
 
         public DbSet<RaftEscalator.Models.UserModel> UserModel { get; set; } = default!;
+        public DbSet<RaftEscalator.Models.GroupModel> GroupModel { get; set; } = default!;
+        public DbSet<RaftEscalator.Models.IssueModel> IssueModel { get; set; } = default!;
+        public DbSet<RaftEscalator.Models.OrganizationModel> OrganizationModel { get; set; } = default!;
     }
 }
