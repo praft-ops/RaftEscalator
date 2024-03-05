@@ -150,10 +150,55 @@ namespace RaftEscalator.Migrations
                 constraints: table =>
 
                 {
-                    table.PrimaryKey("OrganizationModel", x => x.OrgId);//Primary Key
+                    table.PrimaryKey("OrganizationModel", x => x.OrgId); //Primary Key
                 }
 
                 );
+
+            // End Creating Organization table
+
+            // Create the Issues table
+
+            migrationBuilder.CreateTable(
+                //table name
+                name: "IssueModel",
+
+                // Create a new table with the columns, IssueId, IssueName, IssueDescription, IssueResolved, IssueStageOne, IssueStageTwo, IssueStageFour, IssueStageFive
+                // CreatedDate and LastModifiedDate)
+
+                columns: table => new
+                {
+                    // Primary Key
+
+                    IssueId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer.Identify", "1, 1"),
+
+                    // Attributes
+
+                    IssueName = table.Column<string>(type: "string", nullable: false),
+                    IssueDescription = table.Column<string>(type: "string", nullable: false),
+                    IssueResolved = table.Column<bool>(type: "boolean", nullable: false),
+                    IssueStageOne = table.Column<bool>(type: "boolean", nullable: true),
+                    IssueStageTwo = table.Column<bool>(type: "boolean", nullable: true),
+                    IssueStageThree = table.Column<bool>(type: "boolean", nullable: true),
+                    IssueStageFour = table.Column<bool>(type: "boolean", nullable: true),
+                    IssueStageFive = table.Column<bool>(type: "boolean", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+
+                },
+
+                // Define a constraint named IssueModel where the primary key is identified as IssueId
+                constraints: table =>
+
+                {
+                    table.PrimaryKey("IssueModel", x => x.IssueId); // Primary Key
+                }
+
+                );
+
+            // End Creating Issue Table
+
         }
 
         /// <inheritdoc />
