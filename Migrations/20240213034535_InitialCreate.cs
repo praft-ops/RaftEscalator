@@ -16,6 +16,7 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 using System;
+using System.Data.Common;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -28,6 +29,9 @@ namespace RaftEscalator.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+
+            //Create the User Table
+
             migrationBuilder.CreateTable(
                 name: "UserModel",
                 columns: table => new
@@ -40,12 +44,47 @@ namespace RaftEscalator.Migrations
                     UserPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    GroupId = table.Column<int>(type: "int", nullable: false), //GroupModel Foregin Key
+                    OrgId = table.Column<int>(type: "int", nullable: false) // OrgId Foregin Key
+
+                },
+
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserModel", x => x.UserId); // Primary Key
+
+                }
+
+                );
+
+            // Create the Group Table
+
+            migrationBuilder.CreateTable(
+                name: "GroupModel",
+                columns: table => new
+                {
+                    GroupId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GroupName = table.Column<string>(type: "string", nullable: true),
+                    IsStageOne = table.Column<bool>(type: "string", nullable: true),
+                    IsStageTwo = table.Column<bool>(type: "boolean", nullable: true),
+                    IsStageThree = table.Column<bool>(type: "boolean", nullable: true),
+                    IsStageFour = table.Column<bool>(type: "boolean", nullable: true),
+                    IsStageFive = table.Column<bool>(type: "boolean", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OrgId = table.Column<int>(type: "int", nullable: false) // OrgId Foregin Key
+
+
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserModel", x => x.UserId);
-                });
+                    table.PrimaryKey("PK_GroupModel", x => x.GroupId);
+
+
+
+                })
         }
 
         /// <inheritdoc />

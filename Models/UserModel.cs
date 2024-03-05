@@ -30,5 +30,14 @@ namespace RaftEscalator.Models
         public DateTime CreatedDate { get; set; }
         public DateTime LastModifiedDate { get; set; } = DateTime.MinValue;
 
+
+        // Define a one to one relationship to groups
+
+        public GroupModel? Groups { get; set; }
+
+        //Define a one to one relationship to organizations
+
+        public OrganizationModel? Organizations { get; set; }  
+
     }
 }

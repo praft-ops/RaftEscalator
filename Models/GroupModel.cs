@@ -34,6 +34,10 @@ namespace RaftEscalator.Models
         //Define a one-to-many relationship with Users
         public ICollection<UserModel>? Users { get; set; } //Navigation Property
 
+        //Define a one-to-many relationship with Issues
+
+        public ICollection<IssueModel>? Issues { get; set; } // Navigation Property
+
         // Define a one-to-one relationship with organizations
 
         public OrganizationModel? Organizations { get; set; } //Navigation Property
