@@ -32,6 +32,6 @@ namespace RaftEscalator.Models
         public DateTime LastUpdatedDate { get; set;}
 
         //Define a one-to-one relationship with Organizations
-        public ICollection<OrganizationModel>? OrgId { get; set; } //Navigation Property
+        public OrganizationModel? OrgId { get; set; } //Navigation Property
     }
 }
