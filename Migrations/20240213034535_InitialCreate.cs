@@ -18,6 +18,7 @@
 using System;
 using System.Data.Common;
 using Microsoft.EntityFrameworkCore.Migrations;
+using RaftEscalator.Models;
 
 #nullable disable
 
@@ -27,17 +28,29 @@ namespace RaftEscalator.Migrations
     public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
+        /// 
+        // Initiate the migration using the migrationBuilder object passed as a agrument into the Up function. 
         protected override void Up(MigrationBuilder migrationBuilder)
         {
 
             //Create the User Table
 
             migrationBuilder.CreateTable(
+                // Table Name
                 name: "UserModel",
+
+                // Create new table with columns UserID, UserFirstName, UserLastName, UserEmail, UserPhone, UserPassword
+                // ...CreatedDate, Last ModifiedDate, and GroupID
+
                 columns: table => new
                 {
+                    // Primary Key
+
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+
+                    // Attributes
+
                     UserFirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserLastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -45,11 +58,14 @@ namespace RaftEscalator.Migrations
                     UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GroupId = table.Column<int>(type: "int", nullable: false), //GroupModel Foregin Key
-                    OrgId = table.Column<int>(type: "int", nullable: false) // OrgId Foregin Key
+                    
+                    //Foregin Key
+
+                    GroupId = table.Column<int>(type: "int", nullable: false)
 
                 },
 
+                // Create a constraint on the table on the user.ID collumn. Name the constraint PK_UserMode fir the primary key
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserModel", x => x.UserId); // Primary Key
@@ -57,15 +73,28 @@ namespace RaftEscalator.Migrations
                 }
 
                 );
+            // End Creatung User Table
 
             // Create the Group Table
 
             migrationBuilder.CreateTable(
+                // Table name
                 name: "GroupModel",
+
+                // Create new table with columns GroupId, GroupName, IsStageOne, IsStageTwo, IsStageThree, IsStageFrour, IsStageFive
+                //...CreatedDate, LastModifiedDate and OrgId
+
                 columns: table => new
+
                 {
+
+                    // Primary Key
+
                     GroupId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+
+                    // Attibutes
+
                     GroupName = table.Column<string>(type: "string", nullable: true),
                     IsStageOne = table.Column<bool>(type: "string", nullable: true),
                     IsStageTwo = table.Column<bool>(type: "boolean", nullable: true),
@@ -74,17 +103,57 @@ namespace RaftEscalator.Migrations
                     IsStageFive = table.Column<bool>(type: "boolean", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+
+                    // Foregin Key
                     OrgId = table.Column<int>(type: "int", nullable: false) // OrgId Foregin Key
 
 
                 },
+
+                // Create a constraint on the GroupId Column. Name the constraint GroupModel. 
                 constraints: table =>
+
                 {
-                    table.PrimaryKey("PK_GroupModel", x => x.GroupId);
+                    table.PrimaryKey("GroupModel", x =>x.GroupId); //PrimaryKey
 
+                }
 
+                );
 
-                })
+            // End Creating group Table
+
+            // Create the Organization Table
+
+            migrationBuilder.CreateTable(
+                // Table Name
+                name: "OrganizationModel",
+
+                // Create a new table with the columns, OrgId, OrgName, OrganizationPhone, OrganizationEmail, CreatedDate, LastModified Date. 
+                columns: table => new
+
+                {
+                    // Primary Key
+
+                    OrgId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer.Identify", "1, 1"),
+
+                    // Attributes
+
+                    OrgName = table.Column<string>(type: "string", nullable: false),
+                    OrganizationPhone = table.Column<string>(type: "string", nullable: true),
+                    OrganizationEmail = table.Column<string>(type: "string", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                },
+
+                // Define a constraint named OrganizationModel where the primary key is identified as OrgId
+                constraints: table =>
+
+                {
+                    table.PrimaryKey("OrganizationModel", x => x.OrgId);//Primary Key
+                }
+
+                );
         }
 
         /// <inheritdoc />

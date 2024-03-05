@@ -21,6 +21,7 @@ namespace RaftEscalator.Models
 {
     public class UserModel
     {
+        // Primary Key
         public int UserId { get; set; }
         public string? UserFirstName { get; set; }
         public string? UserLastName { get; set; }
@@ -34,10 +35,6 @@ namespace RaftEscalator.Models
         // Define a one to one relationship to groups
 
         public GroupModel? Groups { get; set; }
-
-        //Define a one to one relationship to organizations
-
-        public OrganizationModel? Organizations { get; set; }  
 
     }
 }
