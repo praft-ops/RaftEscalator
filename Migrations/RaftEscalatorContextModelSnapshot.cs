@@ -125,18 +125,23 @@ namespace RaftEscalator.Migrations
                     .HasColumnType("ncarchar(max)");
 
                 b.Property<bool>("IsStageOne")
+                    .HasDefaultValueSql("false")
                     .HasColumnType("boolean");
 
                 b.Property<bool>("IsStageTwo")
+                    .HasDefaultValueSql("false")
                     .HasColumnType("boolean");
 
                 b.Property<bool>("IsStageThree")
+                    .HasDefaultValueSql("false")
                     .HasColumnType("boolean");
 
                 b.Property<bool>("IsStageFour")
+                    .HasDefaultValueSql("false")
                     .HasColumnType("boolean");
 
                 b.Property<bool>("IsStageFive")
+                    .HasDefaultValueSql("false")
                     .HasColumnType("boolean");
 
                 b.Property<DateTime>("CreatedDate")
@@ -164,9 +169,103 @@ namespace RaftEscalator.Migrations
 
             // End the Group Model EntityType for the modelBuilder Param
 
-            // Create the Group Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
-            modelBuilder.Entity("RaftEscalator.Models.GroupModel", b =>
+            // Create the Organization Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
+            modelBuilder.Entity("RaftEscalator.Models.OrganizationModel", b =>
             {
+                // Primary Key
+
+                b.Property<int>("OrgId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrgId"));
+
+                // Properties/Attributes
+
+                b.Property<string>("OrgName")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("OrganizationPhone")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("OrganizationEmail")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<DateTime>("CreatedDate")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2(7)");
+
+                b.Property<DateTime>("LastModifiedDate")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2(7)");
+
+                // Foregin Key
+
+                b.Property<int>("Groups")
+                    .HasColumnType("int");
+
+                // Entity Type Builder Relationships
+
+                b.HasKey("OrgId"); // Primary Key
+
+                b.HasMany("Groups"); // Foregin Key
+            });
+            // End the Creation of the Organzation Entity Builder
+
+            // Create the Issue Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
+            modelBuilder.Entity("RaftEscalator.Models.IssueModel", b =>
+            {
+                //Primary Key Property
+
+                b.Property<int>("IssueId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IssueId"));
+
+                // Properties/Attributes
+
+                b.Property<string>("IssueName")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("IssueDescription")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<bool>("IssueResolved")
+                    .HasDefaultValueSql("false")
+                    .HasColumnType("boolean");
+
+                b.Property<bool>("IssueStageOne")
+                    .HasDefaultValueSql("false")
+                    .HasColumnType("boolean");
+
+                b.Property<bool>("IssueStageTwo")
+                    .HasDefaultValueSql("false")
+                    .HasColumnType("boolean");
+
+                b.Property<bool>("IssueStageThree")
+                    .HasDefaultValueSql("false")
+                    .HasColumnType("boolean");
+
+                b.Property<bool>("IssueStageFour")
+                    .HasDefaultValueSql("false")
+                    .HasColumnType("boolean");
+
+                b.Property<bool>("IssueStageFive")
+                    .HasDefaultValueSql("false")
+                    .HasColumnType("boolean");
+
+                b.Property<DateTime>("CreatedDate")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2(7)");
+
+                b.Property<DateTime>("LastModifiedDate")
+                  .ValueGeneratedOnAdd()
+                  .HasColumnType("datetime2(7)");
+
+                // Entity Type Builder Relationships
+
+                b.HasKey("IssueId"); // Primary Key
 
             });
 #pragma warning restore 612, 618
