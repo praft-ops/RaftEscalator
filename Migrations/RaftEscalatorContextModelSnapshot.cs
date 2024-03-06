@@ -39,15 +39,25 @@ namespace RaftEscalator.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            // Using the Entity() method.Returns a entity type in the model. 
+            // If the Entity is not already part of the model, a new entity type that does not have a cooresponding CLR type
+            // ...Will be added to the Model.
+
+            // Create the User Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
+
             modelBuilder.Entity("RaftEscalator.Models.UserModel", b =>
                 {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    // b.Property returns a object (b) that be used to configure a property of the entity type (<int>)
+                    // Value Generated On Add Configures a property to have a value generated only when saving a new entity.
+
+                    b.Property<int>("UserId").ValueGeneratedOnAdd().HasColumnType("int");
+
+                    // SqlServerPropertyBuilderExtensions.UseIdentiyColum(PropertyBuilder, Int32, Int32) - Configures the Key Property
+                    // to use the SQL Server IDENTITY features to generate values for new entities. (ID/Date Time on Creation)
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime>("CreatedDate").ValueGeneratedOnAdd().HasColumnType("datetime2(7)")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LastModifiedDate")
@@ -72,6 +82,12 @@ namespace RaftEscalator.Migrations
 
                     b.ToTable("UserModel");
                 });
+
+            // Create the Group Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
+            modelBuilder.Entity("RaftEscalator.Models.GroupModel", b =>
+            {
+                b.Property<int>("GroupId").ValueGeneratedOnAdd().HasColumnType("int");
+            });
 #pragma warning restore 612, 618
         }
     }
