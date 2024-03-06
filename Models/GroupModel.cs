@@ -36,6 +36,6 @@ namespace RaftEscalator.Models
         
         // Groups can have many users (One-to-Many
 
-        public ICollection<UserModel> Users { get; set; } // Navigation Property
+        public ICollection<UserModel>? Users { get; set; } // Navigation Property
     }
 }

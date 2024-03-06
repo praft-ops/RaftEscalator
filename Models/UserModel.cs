@@ -32,9 +32,17 @@ namespace RaftEscalator.Models
         public DateTime LastModifiedDate { get; set; } = DateTime.MinValue;
 
 
-        // Define a one to one relationship to groups
+        // Users can be part of Many Groups (One-to-Many)
 
-        public GroupModel? Group { get; set; }
+        public ICollection<GroupModel>? Groups { get; set; }
+
+        // Users can create many issues (One-to-Many)
+
+        public ICollection<IssueModel>? Issues { get; set; }
+
+        //Users can only be part of one Organization
+
+        public OrganizationModel? Organization { get; set; }
 
     }
 }

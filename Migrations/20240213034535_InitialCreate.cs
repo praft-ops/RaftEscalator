@@ -55,14 +55,18 @@ namespace RaftEscalator.Migrations
                     OrganizationEmail = table.Column<string>(type: "string", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+
+                    // Foregin Key
+
+                    GroupId = table.Column<int>(type: "int", nullable: false) // Group Id
                 },
 
                 // Define a constraint named OrganizationModel where the primary key is identified as OrgId
                 constraints: table =>
 
                 {
-                    table.PrimaryKey("OrganizationModel", x => x.OrgId); //Primary Key
-                    // No Foregin Key. Top level data
+                    table.PrimaryKey("PK_OrganizationModel", x => x.OrgId); //Primary Key
+                    table.ForeignKey("FK_OrganizationModel_GroupModel_GroupID", x => x.GroupId, "GroupModel", "GroupId");
                 }
 
                 );
@@ -99,7 +103,8 @@ namespace RaftEscalator.Migrations
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
 
                     // Foregin Key
-                    OrgId = table.Column<int>(type: "int", nullable: false) // OrgId Foregin Key
+                    OrgId = table.Column<int>(type: "int", nullable: false), // OrgId Foregin Key
+                    UserId = table.Column<int>(type: "int", nullable: false) // UserId Foregin Key
 
 
                 },
@@ -110,6 +115,7 @@ namespace RaftEscalator.Migrations
                 {
                     table.PrimaryKey("PK_GroupModel", x => x.GroupId); //PrimaryKey
                     table.ForeignKey("FK_GroupModel_OrganizationModel_OrgId", x => x.OrgId, "OrganizationModel", "OrgId"); //Foreign key
+                    table.ForeignKey("FK_GroupModel_UserModel_UserId", x => x.UserId, "UserModel", "UserId"); // Foregin Key
 
 
                 }
@@ -146,7 +152,9 @@ namespace RaftEscalator.Migrations
                     
                     //Foregin Key
 
-                    GroupId = table.Column<int>(type: "int", nullable: false)
+                    GroupId = table.Column<int>(type: "int", nullable: false),
+                    IssueId = table.Column<int>(type: "int", nullable: false),
+                    OrgId = table.Column<int>(type: "int", nullable: false)
 
                 },
 
@@ -155,7 +163,10 @@ namespace RaftEscalator.Migrations
 
                 {
                     table.PrimaryKey("PK_UserModel", x => x.UserId); // Primary Key
+
                     table.ForeignKey("FK_UserModel_GroupModel_GroupId", x => x.GroupId, "GroupModel", "GroupId"); // ForeignKey
+                    table.ForeignKey("FK_UserModel_IssueModel_IssueID", x => x.IssueId, "IssueModel", "IssueId"); // ForeginKey
+                    
                 }
 
                 );
@@ -219,14 +230,17 @@ namespace RaftEscalator.Migrations
                 name: "OrganizationModel");
 
             //Drop the Group Table
+
             migrationBuilder.DropTable(
                 name: "GroupModel");
 
             //Drop the User Table
+
             migrationBuilder.DropTable(
                 name: "UserModel");
 
             //Drop the Issue table.
+
             migrationBuilder.DropTable(
                 name: "IssueModel");
         }

@@ -29,7 +29,7 @@ namespace RaftEscalator.Models
         //Foreign Keys
 
         // Organizations can have many groups (one-to-many)
-        public ICollection<GroupModel>? Groups { get; set; } // Navigation Property.
 
+        public ICollection<GroupModel> Groups { get; set; }
     }
 }
