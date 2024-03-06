@@ -43,25 +43,31 @@ namespace RaftEscalator.Migrations
             // If the Entity is not already part of the model, a new entity type that does not have a cooresponding CLR type
             // ...Will be added to the Model.
 
-            // Create the User Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
+            // // Create the User Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
 
             modelBuilder.Entity("RaftEscalator.Models.UserModel", b =>
                 {
+                    // Primary Key
                     // b.Property returns a object (b) that be used to configure a property of the entity type (<int>)
                     // Value Generated On Add Configures a property to have a value generated only when saving a new entity.
 
-                    b.Property<int>("UserId").ValueGeneratedOnAdd().HasColumnType("int");
+                    b.Property<int>("UserId").ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
                     // SqlServerPropertyBuilderExtensions.UseIdentiyColum(PropertyBuilder, Int32, Int32) - Configures the Key Property
                     // to use the SQL Server IDENTITY features to generate values for new entities. (ID/Date Time on Creation)
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<DateTime>("CreatedDate").ValueGeneratedOnAdd().HasColumnType("datetime2(7)")
-                        .HasColumnType("datetime2");
+                    // Property/Attributes
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2(7)");
 
                     b.Property<DateTime>("LastModifiedDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2(7)");
 
                     b.Property<string>("UserEmail")
                         .HasColumnType("nvarchar(max)");
@@ -78,15 +84,90 @@ namespace RaftEscalator.Migrations
                     b.Property<string>("UserPhone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    // Foregin Keys
 
-                    b.ToTable("UserModel");
+                    b.Property<int>("Groups")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Issues")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Organization")
+                        .HasColumnType("int");
+
+                    //Entity Type Builder Relationships
+
+                    b.HasKey("UserId"); //Primary Key
+
+                    b.HasMany("Groups"); // Users can be part of many groups
+
+                    b.HasMany("Issues"); // Users can have many issues
+
+                    b.ToTable("UserModel"); // Map this EntityTypeBuilder to the UserModel table
                 });
+
+            // End the User Model EntityType for the modelBuilder Param
 
             // Create the Group Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
             modelBuilder.Entity("RaftEscalator.Models.GroupModel", b =>
             {
-                b.Property<int>("GroupId").ValueGeneratedOnAdd().HasColumnType("int");
+
+                // Primary Key
+
+                b.Property<int>("GroupId").ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GroupId"));
+
+                // Property/Attributes
+
+                b.Property<string>("GroupName")
+                    .HasColumnType("ncarchar(max)");
+
+                b.Property<bool>("IsStageOne")
+                    .HasColumnType("boolean");
+
+                b.Property<bool>("IsStageTwo")
+                    .HasColumnType("boolean");
+
+                b.Property<bool>("IsStageThree")
+                    .HasColumnType("boolean");
+
+                b.Property<bool>("IsStageFour")
+                    .HasColumnType("boolean");
+
+                b.Property<bool>("IsStageFive")
+                    .HasColumnType("boolean");
+
+                b.Property<DateTime>("CreatedDate")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("datetime2(7)");
+
+                b.Property<DateTime>("LastModifiedDate")
+                    .HasColumnType("datetime2(7)");
+
+                // Foregin Keys
+
+                b.Property<int>("Organization")
+                    .HasColumnType("int");
+
+                b.Property<int>("Users")
+                    .HasColumnType("int");
+
+                //Entity Type Builder Relationships
+
+                b.HasKey("GroupId"); // Primary Key
+
+                b.HasMany("Users"); // Foregin Key
+
+            });
+
+            // End the Group Model EntityType for the modelBuilder Param
+
+            // Create the Group Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
+            modelBuilder.Entity("RaftEscalator.Models.GroupModel", b =>
+            {
+
             });
 #pragma warning restore 612, 618
         }

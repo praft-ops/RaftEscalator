@@ -32,7 +32,7 @@ namespace RaftEscalator.Models
         public DateTime LastUpdatedDate { get; set;}
 
         // Groups can be assigned to one organization (One to One)
-        public OrganizationModel? OrgId { get; set; } //Navigation Property
+        public OrganizationModel? Organization { get; set; } //Navigation Property
         
         // Groups can have many users (One-to-Many
 
