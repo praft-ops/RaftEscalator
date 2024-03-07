@@ -37,7 +37,20 @@ along with this program.  If not, see <https: //www.gnu.org/licenses />.
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+        <div class="org-data-container">
+            <table>
+                <tr>
+                    <div>Organization Name</div>
+                </tr>
+                <tr>
+                    <div>Group Name</div>
+                </tr>
+                <tr>
+                    <div>User Name</div>
+                </tr>
+            </table>
+            </div>
+        <div class="nav-container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -49,9 +62,10 @@ along with this program.  If not, see <https: //www.gnu.org/licenses />.
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
+                    <li><a asp-page="/Home">Issue Management</a></li>
+                    <li><a asp-page="/Organization">Organization Management</a></li>
                     <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
+                    <li><a asp-page="/Support">Support</a></li>
                 </ul>
             </div>
         </div>
