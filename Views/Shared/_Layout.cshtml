@@ -22,54 +22,30 @@ along with this program.  If not, see <https: //www.gnu.org/licenses />.
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Raft Escalator</title>
+    <title>@ViewData["Title"] - UserName </title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="org-data-container">
-            <table>
-                <tr>
-                    <div>Organization Name</div>
-                </tr>
-                <tr>
-                    <div>Group Name</div>
-                </tr>
-                <tr>
-                    <div>User Name</div>
-                </tr>
-            </table>
-            </div>
-        <div class="nav-container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-page="/Index" class="navbar-brand">Raft Escalator</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-page="/Home">Issue Management</a></li>
-                    <li><a asp-page="/Organization">Organization Management</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Support">Support</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Navigation Container-->
+    <div class="d-flex flex-row"> 
+        <div class="p-2">Organization</div>
+        <div class="p-2">Group Name</div>
+        <div class="p-2">Role </div>
+        <div class="p-2">Issue Management</div>
+        <div class="p-2">Organization Management</div>
+        <div class="p-2">About</div>
+        <div class="p-2">Support</div>
+        <div class="p-2">Logo</div>
+    </div>
+    <!-- End Navigation Container-->
 
     <partial name="_CookieConsentPartial" />
 
