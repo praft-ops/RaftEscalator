@@ -1,5 +1,5 @@
 ﻿
-//    <Raft Escalator: A program for escalating issues.>
+//    <Canoe: A program for escalating issues.>
 //    Copyright (C) <2024>  <Patrick Sullivan Raftery>
 
 //    This program is free software: you can redistribute it and/or modify
@@ -18,11 +18,11 @@
 using System;
 using System.Data.Common;
 using Microsoft.EntityFrameworkCore.Migrations;
-using RaftEscalator.Models;
+using Canoe.Models;
 
 #nullable disable
 
-namespace RaftEscalator.Migrations
+namespace Canoe.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

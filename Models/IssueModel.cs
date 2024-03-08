@@ -18,7 +18,7 @@ using System.ComponentModel.DataAnnotations;
 
 
 
-namespace RaftEscalator.Models
+namespace Canoe.Models
 {
     public class IssueModel
     {

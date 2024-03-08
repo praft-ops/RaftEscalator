@@ -1,5 +1,5 @@
 
-//    <Raft Escalator: A program for escalating issues.>
+//    <Canoe: A program for escalating issues.>
 //    Copyright (C) <2024>  <Patrick Sullivan Raftery>
 
 //    This program is free software: you can redistribute it and/or modify

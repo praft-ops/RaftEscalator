@@ -1,4 +1,4 @@
-﻿//    <Raft Escalator: A program for escalating issues.>
+﻿//    <Canoe: A program for escalating issues.>
 //    Copyright (C) <2024>  <Patrick Sullivan Raftery>
 
 //    This program is free software: you can redistribute it and/or modify
@@ -19,13 +19,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using RaftEscalator.Models;
+using Canoe.Models;
 
-namespace RaftEscalator.Data
+namespace Canoe.Data
 {
-    public class RaftEscalatorContext : DbContext
+    public class CanoeContext : DbContext
     {
-        public RaftEscalatorContext (DbContextOptions<RaftEscalatorContext> options)
+        public CanoeContext (DbContextOptions<CanoeContext> options)
             : base(options)
         {
         }

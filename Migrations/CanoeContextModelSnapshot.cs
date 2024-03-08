@@ -1,5 +1,5 @@
 ﻿
-//    <Raft Escalator: A program for escalating issues.>
+//    <Canoe: A program for escalating issues.>
 //    Copyright (C) <2024>  <Patrick Sullivan Raftery>
 
 //    This program is free software: you can redistribute it and/or modify
@@ -21,14 +21,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RaftEscalator.Data;
+using Canoe.Data;
 
 #nullable disable
 
-namespace RaftEscalator.Migrations
+namespace Canoe.Migrations
 {
-    [DbContext(typeof(RaftEscalatorContext))]
-    partial class RaftEscalatorContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(CanoeContext))]
+    partial class CanoeContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -45,7 +45,7 @@ namespace RaftEscalator.Migrations
 
             // // Create the User Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
 
-            modelBuilder.Entity("RaftEscalator.Models.UserModel", b =>
+            modelBuilder.Entity("Canoe.Models.UserModel", b =>
                 {
                     // Primary Key
                     // b.Property returns a object (b) that be used to configure a property of the entity type (<int>)
@@ -109,7 +109,7 @@ namespace RaftEscalator.Migrations
             // End the User Model EntityType for the modelBuilder Param
 
             // Create the Group Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
-            modelBuilder.Entity("RaftEscalator.Models.GroupModel", b =>
+            modelBuilder.Entity("Canoe.Models.GroupModel", b =>
             {
 
                 // Primary Key
@@ -170,7 +170,7 @@ namespace RaftEscalator.Migrations
             // End the Group Model EntityType for the modelBuilder Param
 
             // Create the Organization Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
-            modelBuilder.Entity("RaftEscalator.Models.OrganizationModel", b =>
+            modelBuilder.Entity("Canoe.Models.OrganizationModel", b =>
             {
                 // Primary Key
 
@@ -213,7 +213,7 @@ namespace RaftEscalator.Migrations
             // End the Creation of the Organzation Entity Builder
 
             // Create the Issue Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
-            modelBuilder.Entity("RaftEscalator.Models.IssueModel", b =>
+            modelBuilder.Entity("Canoe.Models.IssueModel", b =>
             {
                 //Primary Key Property
 
