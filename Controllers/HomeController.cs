@@ -22,7 +22,7 @@ namespace Canoe.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Dashboard()
         {
             ViewData["Message"] = "Your Application Description Page.";
 
