@@ -17,7 +17,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore;
-using RaftEscalator.Data;
+using Canoe.Data;
 
 // Create the bulder using .CreateBuilder
 var builder = WebApplication.CreateBuilder(args);
@@ -28,8 +28,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 // Add Service for SQL DB for CRUD Operations
-builder.Services.AddDbContext<RaftEscalatorContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("RaftEscalatorContext") ?? throw new InvalidOperationException("Connection string 'RaftEscalatorContext' not found.")));
+builder.Services.AddDbContext<CanoeContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("CanoeContext") ?? throw new InvalidOperationException("Connection string 'CanoeContext' not found.")));
 
 // Add the Controllers with Views Service
 builder.Services.AddControllersWithViews();

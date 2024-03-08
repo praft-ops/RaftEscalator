@@ -30,9 +30,9 @@ namespace Canoe.Data
         {
         }
 
-        public DbSet<RaftEscalator.Models.UserModel> UserModel { get; set; } = default!;
-        public DbSet<RaftEscalator.Models.GroupModel> GroupModel { get; set; } = default!;
-        public DbSet<RaftEscalator.Models.IssueModel> IssueModel { get; set; } = default!;
-        public DbSet<RaftEscalator.Models.OrganizationModel> OrganizationModel { get; set; } = default!;
+        public DbSet<Canoe.Models.UserModel> UserModel { get; set; } = default!;
+        public DbSet<Canoe.Models.GroupModel> GroupModel { get; set; } = default!;
+        public DbSet<Canoe.Models.IssueModel> IssueModel { get; set; } = default!;
+        public DbSet<Canoe.Models.OrganizationModel> OrganizationModel { get; set; } = default!;
     }
 }
