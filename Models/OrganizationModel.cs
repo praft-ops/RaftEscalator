@@ -1,4 +1,4 @@
-﻿//    <Raft Escalator: A program for escalating issues.>
+﻿//    <Canoe: A program for escalating issues.>
 //    Copyright (C) <2024>  <Patrick Sullivan Raftery>
 
 //    This program is free software: you can redistribute it and/or modify
@@ -30,6 +30,10 @@ namespace Canoe.Models
 
         // Organizations can have many groups (one-to-many)
 
-        public ICollection<GroupModel> Groups { get; set; }
+        public ICollection<GroupModel>? Groups { get; set; }
+
+        // Organizations can have many Customers (one-to-many)
+
+        public ICollection<CustomerModel>? Customers { get; set; }
     }
 }

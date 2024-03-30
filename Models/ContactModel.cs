@@ -14,35 +14,32 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-using System.ComponentModel.DataAnnotations;
-
-
 namespace Canoe.Models
 {
-    public class GroupModel
+    public class ContactModel
     {
 
         // Primary Key
-        public int GroupId { get; set; }
+        public int ContactId { get; set; }
 
-        // Properties
-
-        public string? GroupName { get; set; }
-        public bool IsStageOne { get; set; }
-        public bool IsStageTwo { get; set;}
-        public bool IsStageThree { get; set;}
-        public bool IsStageFour { get; set;}
-        public bool IsStageFive { get; set;}
+        //Properties
+        public string? ContactAlias { get; set; }
+        public string? ContactLast {  get; set; }
+        public string? ContactFirst { get; set; }
+        public string? ContactPhone { get; set; }
+        public string? ContactEmail { get; set; }
+        public string? ContactCity { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime LastUpdatedDate { get; set;}
+        public DateTime LastModifiedDate { get; set; }
 
-        // Foregin Keys
 
-        // Groups can be assigned to one organization (One to One)
-        public OrganizationModel? Organization { get; set; } //Navigation Property
-        
-        // Groups can have many users (One-to-Many)
+        //Foregin Key
 
-        public ICollection<UserModel>? Users { get; set; } // Navigation Property
+        // Contacts can only be assigned to one customer, Customers can have many contacts (One-to-many)
+        public CustomerModel? AssignedCustomer { get; set; }
+
+        // Contacts can by be created by a user, Users can create many contacts
+        public UserModel? CreatedBy { get; set; }
+
     }
 }

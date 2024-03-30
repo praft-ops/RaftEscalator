@@ -1,4 +1,4 @@
-﻿//    <Raft Escalator: A program for escalating issues.>
+﻿//    <Canoe: A program for escalating issues.>
 //    Copyright (C) <2024>  <Patrick Sullivan Raftery>
 
 //    This program is free software: you can redistribute it and/or modify
@@ -14,6 +14,7 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -24,6 +25,8 @@ namespace Canoe.Models
     {
         // Primary Key
         public int IssueId { get; set; }
+
+        // Properties
         public string? IssueName { get; set; }
         public string? IssueDescription { get; set; }
         public bool IssueResolved { get; set; }
@@ -37,6 +40,12 @@ namespace Canoe.Models
         // Issues can be assigned to one user. 
         public UserModel? AssingedUser { get; set; }
 
-        // Issues can have many Comments
+        // Issues can have many logs
+
+        public ICollection<LogModel>? IssueLogs { get; set; }
+
+        //Issues can have many Actions
+
+        public ICollection<ActionModel>?IssueActions { get; set; }
     }
 }

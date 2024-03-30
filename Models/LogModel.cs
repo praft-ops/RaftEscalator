@@ -14,35 +14,33 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-using System.ComponentModel.DataAnnotations;
-
-
 namespace Canoe.Models
 {
-    public class GroupModel
+    public class LogModel
     {
-
         // Primary Key
-        public int GroupId { get; set; }
-
-        // Properties
-
-        public string? GroupName { get; set; }
-        public bool IsStageOne { get; set; }
-        public bool IsStageTwo { get; set;}
-        public bool IsStageThree { get; set;}
-        public bool IsStageFour { get; set;}
-        public bool IsStageFive { get; set;}
-        public DateTime CreatedDate { get; set; }
-        public DateTime LastUpdatedDate { get; set;}
-
-        // Foregin Keys
-
-        // Groups can be assigned to one organization (One to One)
-        public OrganizationModel? Organization { get; set; } //Navigation Property
+        public int LogId { get; set; }
         
-        // Groups can have many users (One-to-Many)
+        // Properties
+        public string? LogHeader { get; set; }
+        public string? LogBody { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime LastModifiedDate { get; set; } = DateTime.Now;
 
-        public ICollection<UserModel>? Users { get; set; } // Navigation Property
+        // Issues can have many logs, a log can only be assigned to one issue
+
+        public IssueModel? LogIssue { get; set; } //Foreign Key
+
+        // Users can have many logs, a log can only be assigned to one user
+
+        public UserModel? LogUser { get; set; } //Foregin Key
+
+        // Contacts can have many logs, a log can only be assigned to one contact
+
+        public ContactModel? LogContact { get; set; } //Foregin Key
+
+
+
+        
     }
 }

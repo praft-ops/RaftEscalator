@@ -14,35 +14,28 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-using System.ComponentModel.DataAnnotations;
-
 
 namespace Canoe.Models
 {
-    public class GroupModel
+    public class ActionModel
     {
 
         // Primary Key
-        public int GroupId { get; set; }
+        public int ActionId { get; set; }
 
         // Properties
-
-        public string? GroupName { get; set; }
-        public bool IsStageOne { get; set; }
-        public bool IsStageTwo { get; set;}
-        public bool IsStageThree { get; set;}
-        public bool IsStageFour { get; set;}
-        public bool IsStageFive { get; set;}
-        public DateTime CreatedDate { get; set; }
-        public DateTime LastUpdatedDate { get; set;}
+        public string? ActionHeader { get; set; }
+        public string? ActionBody { get; set; }
 
         // Foregin Keys
 
-        // Groups can be assigned to one organization (One to One)
-        public OrganizationModel? Organization { get; set; } //Navigation Property
-        
-        // Groups can have many users (One-to-Many)
+        // Action can be created by a user
+        public UserModel? ActionUser { get; set; }
 
-        public ICollection<UserModel>? Users { get; set; } // Navigation Property
+        // Action can be assigned to a Issue
+        public IssueModel? ActionIssue { get; set; }
+
+
+
     }
 }
