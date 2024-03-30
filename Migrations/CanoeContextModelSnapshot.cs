@@ -255,6 +255,10 @@ namespace Canoe.Migrations
                     .HasDefaultValueSql("false")
                     .HasColumnType("boolean");
 
+                b.Property<bool>("IsWithinSLA")
+                    .HasDefaultValueSql("false")
+                    .HasColumnType("boolean");
+
                 b.Property<DateTime>("CreatedDate")
                     .ValueGeneratedOnAdd()
                     .HasColumnType("datetime2(7)");
@@ -262,6 +266,11 @@ namespace Canoe.Migrations
                 b.Property<DateTime>("LastModifiedDate")
                   .ValueGeneratedOnAdd()
                   .HasColumnType("datetime2(7)");
+
+                // Foregin Key
+
+                b.Property<int>("AssignedUser")
+                    .HasColumnType ("int");
 
                 // Entity Type Builder Relationships
 

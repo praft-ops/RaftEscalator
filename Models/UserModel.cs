@@ -40,9 +40,11 @@ namespace Canoe.Models
 
         public ICollection<IssueModel>? Issues { get; set; }
 
-        //Users can only be part of one Organization
+        // Users can only be part of one Organization (One-to-One)
 
         public OrganizationModel? Organization { get; set; }
+
+        //
 
     }
 }

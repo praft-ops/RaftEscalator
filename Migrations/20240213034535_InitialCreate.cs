@@ -198,6 +198,7 @@ namespace Canoe.Migrations
                     IssueStageThree = table.Column<bool>(type: "boolean", nullable: true),
                     IssueStageFour = table.Column<bool>(type: "boolean", nullable: true),
                     IssueStageFive = table.Column<bool>(type: "boolean", nullable: true),
+                    IsWithinSLA = table.Column<bool>(type: "boolean", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
 
@@ -207,15 +208,15 @@ namespace Canoe.Migrations
 
                 },
 
-                // Define a constraint named IssueModel where the primary key is identified as IssueId
+                // Define a constraint named IssueModel where the primary key is identified as IssueId and UserId
                 constraints: table =>
 
                 {
                     table.PrimaryKey("PK_IssueModel", x => x.IssueId); // Primary Key
-                    table.ForeignKey("FK_IssueModel_UserModel)UserId", x => x.UserId, "UserModel", "UserId"); // Foreign Key
+                    table.ForeignKey("FK_IssueModel_UserModel_UserId", x => x.UserId, "UserModel", "UserId"); // Foreign Key
                 }
 
-                ); 
+                ) ; 
 
             // End Creating Issue Table
 

@@ -33,13 +33,16 @@ namespace Canoe.Models
         public bool IssueStageThree { get; set; }
         public bool IssueStageFour { get; set; }
         public bool IssueStageFive { get; set; }
+        public bool IsWithinSLA { get; set; }
 
         public DateTime? CreatedDate { get; set; }
         public DateTime? LastModifiedDate { get; set; }
 
         // Foregin Keys
 
-        //Issues can be assigned to one user. 
-        public UserModel? User { get; set; }
+        // Issues can be assigned to one user. 
+        public UserModel? AssingedUser { get; set; }
+
+        // Issues can have many Comments
     }
 }
