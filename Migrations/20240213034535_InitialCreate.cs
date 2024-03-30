@@ -211,9 +211,149 @@ namespace Canoe.Migrations
                     table.ForeignKey("FK_IssueModel_UserModel_UserId", x => x.UserId, "UserModel", "UserId"); // Foreign Key
                 }
 
-                ) ; 
+                ) ;
 
             // End Creating Issue Table
+
+            // Create the CustomerModel table
+
+            migrationBuilder.CreateTable(
+                //table name
+                name: "CustomerModel",
+
+                // Create a new table with the columns, CustomerId, CustomerName, CustomerLegalName, CustomerEmail, CustomerPhone, CustomerCity, Customer Country, CustomerState,
+                // ... CustomerZipCode, CustomnerTimeZone, CreatedDate and LastModifiedDate)
+
+                columns: table => new
+                {
+                    // Primary Key
+
+                    CustomerId = table.Column<int> (type: "int", nullable: false)
+                        .Annotation("SqlServer.Identify", "1, 1"),
+
+                    // Attributes
+
+                    CustomerName = table.Column<string>(type: "string", nullable: false),
+                    CustomerLegalName = table.Column<string>(type: "string", nullable: false),
+                    CustomerEmail = table.Column<string>(type: "string", nullable: false),
+                    CustomerPhone = table.Column<string>(type: "string", nullable: false),
+                    CustomerCity = table.Column<string>(type: "string", nullable: false),
+                    CustomerCountry = table.Column<string>(type: "string", nullable: false),
+                    CustomerState = table.Column<string>(type: "string", nullable: false),
+                    CustomerZipCode = table.Column<string>(type: "string", nullable: false, maxLength: 4), // Zip Codes only a array of 5 numbers (0, 1, 2, 3, 4)
+                    CustomerTimeZone = table.Column<string>(type: "string", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+
+                    // Foregin Key
+
+                    ResponsibleOrg = table.Column<int>(type: "int", nullable: false), // Organization Model ForeginKey
+                    CreatedBy = table.Column<int>(type: "int", nullable: false), // User Model Foregin Key
+                    Contacts = table.Column<int>(type: "int", nullable: false), // Contacts Model Foregin Key
+
+                },
+
+                // Define a constraint named IssueModel where the primary key is identified as IssueId and UserId
+                constraints: table =>
+
+                {
+                    table.PrimaryKey("PK_CustomerModel", x => x.CustomerId); // Primary Key
+                    table.ForeignKey("FK_CustomerModel_OrganizationModel_OrganizationId", x => x.ResponsibleOrg, "OrganizationModel", "OrganizationId");
+                    table.ForeignKey("FK_CustomerModel_UserModel_UserId", x => x.CreatedBy, "UserModel", "UserId");
+                    table.ForeignKey("FK_CustomerModel_ContactModel_ContactId", x => x.Contacts, "ContactModel", "ContactId");
+
+                }
+
+                );
+
+            // End Creating the CustomerModel Table
+
+            // Create the LogModel table
+
+            migrationBuilder.CreateTable(
+                //table name
+                name: "",
+
+                // Create a new table with the columns
+                // CreatedDate and LastModifiedDate)
+
+                columns: table => new
+                {
+                    // Primary Key
+
+                    // Attributes
+
+                    // Foregin Key
+
+                },
+
+                // Define a constraint named IssueModel where the primary key is identified as IssueId and UserId
+                constraints: table =>
+
+                {
+                }
+
+                );
+
+            // End Creating the LogModel Table
+
+            // Create the ActionModel table
+
+            migrationBuilder.CreateTable(
+                //table name
+                name: "",
+
+                // Create a new table with the columns
+                // CreatedDate and LastModifiedDate)
+
+                columns: table => new
+                {
+                    // Primary Key
+
+                    // Attributes
+
+                    // Foregin Key
+
+                },
+
+                // Define a constraint named IssueModel where the primary key is identified as IssueId and UserId
+                constraints: table =>
+
+                {
+                }
+
+                );
+
+            // End Creating the ActionModel Table
+
+            // Create the ContactModel table
+
+            migrationBuilder.CreateTable(
+                //table name
+                name: "",
+
+                // Create a new table with the columns
+                // CreatedDate and LastModifiedDate)
+
+                columns: table => new
+                {
+                    // Primary Key
+
+                    // Attributes
+
+                    // Foregin Key
+
+                },
+
+                // Define a constraint named IssueModel where the primary key is identified as IssueId and UserId
+                constraints: table =>
+
+                {
+                }
+
+                );
+
+            // End Creating the ContactModel Table
 
         }
 
