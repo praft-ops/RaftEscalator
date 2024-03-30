@@ -27,12 +27,6 @@ namespace Canoe.Models
         public string? IssueName { get; set; }
         public string? IssueDescription { get; set; }
         public bool IssueResolved { get; set; }
-
-        public bool IssueStageOne { get; set;}
-        public bool IssueStageTwo { get; set; }
-        public bool IssueStageThree { get; set; }
-        public bool IssueStageFour { get; set; }
-        public bool IssueStageFive { get; set; }
         public bool IsWithinSLA { get; set; }
 
         public DateTime? CreatedDate { get; set; }

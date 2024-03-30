@@ -235,26 +235,6 @@ namespace Canoe.Migrations
                     .HasDefaultValueSql("false")
                     .HasColumnType("boolean");
 
-                b.Property<bool>("IssueStageOne")
-                    .HasDefaultValueSql("false")
-                    .HasColumnType("boolean");
-
-                b.Property<bool>("IssueStageTwo")
-                    .HasDefaultValueSql("false")
-                    .HasColumnType("boolean");
-
-                b.Property<bool>("IssueStageThree")
-                    .HasDefaultValueSql("false")
-                    .HasColumnType("boolean");
-
-                b.Property<bool>("IssueStageFour")
-                    .HasDefaultValueSql("false")
-                    .HasColumnType("boolean");
-
-                b.Property<bool>("IssueStageFive")
-                    .HasDefaultValueSql("false")
-                    .HasColumnType("boolean");
-
                 b.Property<bool>("IsWithinSLA")
                     .HasDefaultValueSql("false")
                     .HasColumnType("boolean");
