@@ -34,5 +34,10 @@ namespace Canoe.Data
         public DbSet<Canoe.Models.GroupModel> GroupModel { get; set; } = default!;
         public DbSet<Canoe.Models.IssueModel> IssueModel { get; set; } = default!;
         public DbSet<Canoe.Models.OrganizationModel> OrganizationModel { get; set; } = default!;
+        public DbSet<Canoe.Models.CustomerModel> CustomerModel { get; set; } = default!;
+        public DbSet<Canoe.Models.ActionModel> ActionModel { get; set; } = default!;
+        public DbSet<Canoe.Models.LogModel> LogModel { get; set; } = default!;
+        public DbSet<Canoe.Models.ContactModel> ContactModel { get; set; } = default!;
+
     }
 }
