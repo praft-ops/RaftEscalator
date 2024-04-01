@@ -357,25 +357,37 @@ namespace Canoe.Migrations
 
             migrationBuilder.CreateTable(
                 //table name
-                name: "",
+                name: "ContactModel",
 
-                // Create a new table with the columns
+                // Create a new table with the columns, ContactId, ContactAlias, ContactLast, ContactFirst, ContactPhone, ContactEmail, ContactCity,
                 // CreatedDate and LastModifiedDate)
 
                 columns: table => new
                 {
                     // Primary Key
-
+                    ContactId = table.Column<int>(type: "int", nullable: false),
                     // Attributes
+                    ContactAlias = table.Column<string>(type: "string", nullable: false),
+                    ContactLast = table.Column<string>(type: "string", nullable: true),
+                    ContactFirst = table.Column<string>(type: "string", nullable: true),
+                    ContactPhone = table.Column<string>(type: "string", nullable: true),
+                    ContactEmail = table.Column<string>(type: "string", nullable: true),
+                    ContactCity = table.Column<string>(type: "string", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
 
                     // Foregin Key
 
+                    AssignedCustomer = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
                 },
 
                 // Define a constraint named IssueModel where the primary key is identified as IssueId and UserId
                 constraints: table =>
-
                 {
+                    table.PrimaryKey("PK_ContacModel", x => x.ContactId);
+                    table.ForeignKey("FK_ContactModel_CustomerModel_CustomerID", x => x.AssignedCustomer, "CustomerModel", "CustomerId");
+                    table.ForeignKey("FK_ContactModel_UserModel_UserId", x => x.CreatedBy, "UserModel", "UserId");
                 }
 
                 );
@@ -384,7 +396,9 @@ namespace Canoe.Migrations
 
         }
 
-        /// <inheritdoc />
+        // End Creating Tables
+
+        // Define the Down Method with the migrationBuilder context as a param
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             //Drop the Organization Table
@@ -406,6 +420,28 @@ namespace Canoe.Migrations
 
             migrationBuilder.DropTable(
                 name: "IssueModel");
+
+            //Drop the Customer Table
+
+            migrationBuilder.DropTable(
+                name: "CustomerModel");
+
+            //Drop the Contact Tabke
+
+            migrationBuilder.DropTable(
+                name: "ContactModel");
+
+            //Drop the Action Table
+
+            migrationBuilder.DropTable(
+                name: "ActionModel");
+
+            // Drop the Log table
+
+            migrationBuilder.DropTable(
+                name: "LogModel");
+
+
         }
     }
 }
