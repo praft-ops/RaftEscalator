@@ -109,6 +109,8 @@ namespace Canoe.Migrations
 
                     b.HasMany("Issues"); // Users can have many issues
 
+                    b.HasOne("Organization"); // Users can have one organization
+
                     b.HasMany("Logs"); // Users can have many logs
 
                     b.HasMany("Actions"); // Users can have many actions
@@ -172,6 +174,8 @@ namespace Canoe.Migrations
                 //Entity Type Builder Relationships
 
                 b.HasKey("GroupId"); // Primary Key
+
+                b.HasOne("Organization");// Foregin Key
 
                 b.HasMany("Users"); // Foregin Key
 
@@ -285,6 +289,170 @@ namespace Canoe.Migrations
                 b.HasMany("IssueActions"); // Foregin Key
 
             });
+
+            // End Issue Entity Builder
+
+            // Start Contact Entity Builder
+
+            modelBuilder.Entity("Canoe.Models.ContactModel", b =>
+            {
+
+                //Primary Key
+
+                b.Property<int>("ContactId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactId"));
+
+                //Properties
+
+                b.Property<string>("ContactAlias")
+                .HasColumnType("string");
+
+                b.Property<string>("ContactLast")
+                .HasColumnType("string");
+
+                b.Property<string>("ContactFirst")
+                .HasColumnType("string")
+                .IsRequired(false);
+
+                b.Property<string>("ContactPhone")
+                .HasColumnType("string")
+                .IsRequired(false);
+
+                b.Property<string>("ContactEmail")
+                .HasColumnType("string")
+                .IsRequired(false);
+
+                b.Property<string>("ContactCity")
+                .HasColumnType("string")
+                .IsRequired(false);
+
+                b.Property<DateTime>("CreatedDate")
+                .HasColumnType("datetime2(7)")
+                .ValueGeneratedOnAdd();
+
+                b.Property<DateTime>("LastModifiedDate")
+                .HasColumnType("datetime2(7)")
+                .ValueGeneratedOnAddOrUpdate();
+
+                //Foregin Keys
+
+                b.Property<int>("AssignedCustomer")
+                .HasColumnType("int")
+                .IsRequired(true);
+
+                b.Property<int>("CreatedBy")
+                .HasColumnType("int")
+                .IsRequired(true);
+
+                //Entity type builder Relationships
+
+                b.HasKey("ContactId");
+
+                b.HasOne("AssignedCustomer");
+
+                b.HasOne("CreatedBy");
+
+            });
+
+            // Start Contact Entity Builder
+
+            modelBuilder.Entity("Canoe.Models.ActionModel", b =>
+            {
+
+                //Primary Key
+
+                b.Property("ActionId")
+                    .ValueGeneratedOnAdd();
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActionId"));
+
+                //Properties
+                b.Property<string>("ActionHeader")
+                    .HasColumnType("string")
+                    .IsRequired(true);
+
+                b.Property<string>("ActionBody")
+                    .HasColumnType("string")
+                    .IsRequired(true);
+
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2(7)")
+                    .ValueGeneratedOnAdd();
+
+                b.Property<DateTime>("LastModifiedDate")
+                    .HasColumnType("datetime2(7)")
+                    .ValueGeneratedOnAddOrUpdate();
+
+                //Foregin Keys
+
+                b.Property<int>("ActionUser")
+                    .HasColumnType("int")
+                    .IsRequired(true);
+
+                b.Property<int>("ActionIssue")
+                .HasColumnType("int")
+                .IsRequired(true);
+
+                //Entity type builder Relationships
+
+                b.HasKey("ActionId");
+
+                b.HasOne("ActionUser");
+
+                b.HasOne("ActionIssue");
+
+            });
+
+            // End Action Entity Builder
+
+            // Start Contact Entity Builder
+
+            modelBuilder.Entity("Canoe.Models.ContacModel", b =>
+            {
+
+                //Primary Key
+
+                //Properties
+
+                //Foregin Keys
+
+                //Entity type builder Relationships
+
+            });
+
+            // Start Contact Entity Builder
+
+            modelBuilder.Entity("Canoe.Models.ContacModel", b =>
+            {
+
+                //Primary Key
+
+                //Properties
+
+                //Foregin Keys
+
+                //Entity type builder Relationships
+
+            });
+
+            // Start Contact Entity Builder
+
+            modelBuilder.Entity("Canoe.Models.ContacModel", b =>
+            {
+
+                //Primary Key
+
+                //Properties
+
+                //Foregin Keys
+
+                //Entity type builder Relationships
+
+            });
+
 #pragma warning restore 612, 618
         }
     }
