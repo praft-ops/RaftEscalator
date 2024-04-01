@@ -95,6 +95,12 @@ namespace Canoe.Migrations
                     b.Property<int>("Organization")
                         .HasColumnType("int");
 
+                    b.Property<int>("Logs")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Actions")
+                        .HasColumnType("int");
+
                     //Entity Type Builder Relationships
 
                     b.HasKey("UserId"); //Primary Key
@@ -102,6 +108,10 @@ namespace Canoe.Migrations
                     b.HasMany("Groups"); // Users can be part of many groups
 
                     b.HasMany("Issues"); // Users can have many issues
+
+                    b.HasMany("Logs"); // Users can have many logs
+
+                    b.HasMany("Actions"); // Users can have many actions
 
                     b.ToTable("UserModel"); // Map this EntityTypeBuilder to the UserModel table
                 });
