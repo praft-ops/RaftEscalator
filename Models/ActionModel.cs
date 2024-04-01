@@ -27,6 +27,9 @@ namespace Canoe.Models
         public string? ActionHeader { get; set; }
         public string? ActionBody { get; set; }
 
+        public DateTime? CreatedDate { get; set; } = default(DateTime?);
+        public DateTime? LastModifiedDate { get; set; }
+
         // Foregin Keys
 
         // Action can be created by a user

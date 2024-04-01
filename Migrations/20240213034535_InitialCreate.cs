@@ -315,18 +315,27 @@ namespace Canoe.Migrations
 
             migrationBuilder.CreateTable(
                 //table name
-                name: "",
+                name: "ActionModel",
 
-                // Create a new table with the columns
+                // Create a new table with the columns, ActionId, ActionHeader, ActionBody, ActionUser, ActionIssue,
                 // CreatedDate and LastModifiedDate)
 
                 columns: table => new
                 {
                     // Primary Key
+                    ActionId = table.Column<int>(type: "int", nullable: false),
 
                     // Attributes
 
+                    ActionHeader = table.Column<string>(type: "string", nullable: false),
+                    ActionBody = table.Column<string>(type: string, nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDAte = table.Column<DateTime>(type: "datetime2", nullable: false),
+
                     // Foregin Key
+
+                    ActionUser = table.Column<int>(type: "int", nullable: false),
+                    ActionIssue = table.Column<int>(type: "int", nullable: false),
 
                 },
 
@@ -334,6 +343,10 @@ namespace Canoe.Migrations
                 constraints: table =>
 
                 {
+                    table.PrimaryKey("PK_ActionModel", x => x.ActionId);
+                    table.ForeignKey("FK_ActionModel_UserModel", x => x.ActionUser, "UserModel", "UserId");
+                    table.ForeignKey("FK_ActionModel_IssueModel", x => x.ActionIssue, "IssueModel", "IssueId");
+
                 }
 
                 );
