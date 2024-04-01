@@ -272,25 +272,39 @@ namespace Canoe.Migrations
 
             migrationBuilder.CreateTable(
                 //table name
-                name: "",
+                name: "LogModel",
 
-                // Create a new table with the columns
-                // CreatedDate and LastModifiedDate)
+                // Create a new table with the columns, LogID, LogHeader, LogBody, CreatedDate, LastModifiedDate
 
                 columns: table => new
                 {
                     // Primary Key
 
+                    LogId = table.Column<int>(type: "int", nullable: false)
+                    .Annotation("SqlServer.Identify", "1, 1"),
+
                     // Attributes
 
+                    LogHeader = table.Column<string>(type: "string", nullable: false),
+                    LogBody = table.Column<string>(type: "string", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifieDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+
                     // Foregin Key
+
+                    LogIssue = table.Column<int>(type: "int", nullable: false),
+                    LogUser = table.Column<int>(type: "int", nullable: false),
+                    LogContact = table.Column<int>(type: "int", nullable: false),
 
                 },
 
                 // Define a constraint named IssueModel where the primary key is identified as IssueId and UserId
                 constraints: table =>
-
                 {
+                    table.PrimaryKey("PK_LogModel", x => x.LogId); // Primary Key
+                    table.ForeignKey("FK_LogModel_IssueModel_IssueId", x => x.LogIssue, "IssueModel", "IssueId");
+                    table.ForeignKey("FK_LogModel_UserModel_UserId", x => x.LogUser, "UserModel", "UserId");
+                    table.ForeignKey("FK_LogModel_ContactModel_ContactId", x => x.LogContact, "ContactModel", "ContactId");
                 }
 
                 );
