@@ -270,9 +270,19 @@ namespace Canoe.Migrations
                 b.Property<int>("AssignedUser")
                     .HasColumnType ("int");
 
+                b.Property<int>("IssueLogs")
+                    .HasColumnType("int");
+
+                b.Property<int>("IssueActions")
+                    .HasColumnType("int");
+
                 // Entity Type Builder Relationships
 
                 b.HasKey("IssueId"); // Primary Key
+
+                b.HasMany("IssueLogs"); // Foregin Key
+
+                b.HasMany("IssueActions"); // Foregin Key
 
             });
 #pragma warning restore 612, 618
