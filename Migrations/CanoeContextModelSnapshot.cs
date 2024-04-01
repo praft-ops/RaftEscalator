@@ -408,18 +408,88 @@ namespace Canoe.Migrations
 
             // End Action Entity Builder
 
-            // Start Contact Entity Builder
+            // Start Customer Entity Builder
 
-            modelBuilder.Entity("Canoe.Models.ContacModel", b =>
+            modelBuilder.Entity("Canoe.Models.CustomerModel", b =>
             {
-
                 //Primary Key
+
+                b.Property<int>("CustomerId")
+                .HasColumnType("int")
+                .ValueGeneratedOnAdd();
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActionId"));
 
                 //Properties
 
+                b.Property<string>("CustomerName")
+                    .HasColumnType("string")
+                    .IsRequired(true);
+
+                b.Property<string>("CustomerLegalName")
+                    .HasColumnType("string")
+                    .IsRequired(false);
+
+                b.Property<string>("CustomerEmail")
+                    .HasColumnType("string")
+                    .IsRequired(true);
+
+                b.Property<string>("CustomerPhone")
+                    .HasColumnType("string")
+                    .IsRequired(true);
+
+                b.Property<string>("CustomerCity")
+                    .HasColumnType("string")
+                    .IsRequired(true);
+
+                b.Property<string>("CustomerCountry")
+                    .HasColumnType("string")
+                    .IsRequired(true);
+
+                b.Property<string>("CusotmerState")
+                    .HasColumnType("string")
+                    .IsRequired(true);
+
+                b.Property<string>("CustomerZipCode")
+                    .HasColumnType("string")
+                    .IsRequired(true);
+
+                b.Property<string>("CustomerTimeZone")
+                    .HasColumnType("string")
+                    .IsRequired(true);
+
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2(7)")
+                    .IsRequired(true);
+
+                b.Property<DateTime>("LastModifiedDate")
+                    .HasColumnType("datetime2(7)")
+                    .IsRequired(true);
+
                 //Foregin Keys
 
+                b.Property<int>("ResponsibleOrg")
+                .HasColumnType("int")
+                .IsRequired(true);
+
+                b.Property<int>("CreatedBy")
+                .HasColumnType("int")
+                .IsRequired(true);
+
+                b.Property<int>("Contacts")
+                .HasColumnType("int")
+                .IsRequired(true);
+
+
                 //Entity type builder Relationships
+
+                b.HasKey("CustomerId");
+
+                b.HasOne("ResponsibleOrg");
+
+                b.HasOne("CreatedBy");
+
+                b.HasMany("Contacts");
 
             });
 
