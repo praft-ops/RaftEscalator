@@ -24,11 +24,9 @@ using Canoe.Models;
 
 namespace Canoe.Migrations
 {
-    /// <inheritdoc />
+    
     public partial class InitialCreate : Migration
     {
-        /// <inheritdoc />
-        /// 
         // Initiate the migration using the migrationBuilder object passed as a agrument into the Up function. 
         protected override void Up(MigrationBuilder migrationBuilder)
         {

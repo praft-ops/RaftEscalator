@@ -158,7 +158,7 @@ namespace Canoe.Migrations
                     .ValueGeneratedOnAdd()
                     .HasColumnType("datetime2(7)");
 
-                b.Property<DateTime>("LastModifiedDate")
+                b.Property<DateTime>("LastUpdatedDate")
                     .HasColumnType("datetime2(7)");
 
                 // Foregin Keys
@@ -209,9 +209,13 @@ namespace Canoe.Migrations
                     .ValueGeneratedOnAdd()
                     .HasColumnType("datetime2(7)");
 
+
                 // Foregin Key
 
                 b.Property<int>("Groups")
+                    .HasColumnType("int");
+
+                b.Property<int>("Customers")
                     .HasColumnType("int");
 
                 // Entity Type Builder Relationships
@@ -219,7 +223,11 @@ namespace Canoe.Migrations
                 b.HasKey("OrgId"); // Primary Key
 
                 b.HasMany("Groups"); // Foregin Key
+
+                b.HasMany("Customers"); // Foregin Key
+
             });
+
             // End the Creation of the Organzation Entity Builder
 
             // Create the Issue Model Entity using the overloaded entity method > Entity(String, Action<EntityTypeBuilder>)
